@@ -1,0 +1,26 @@
+{
+    "name": "TFTUI",
+    "authors": [
+      {
+        "name": "Stephen Gordon",
+        "email": "gordoste@iinet.net.au"
+      }
+    ],
+    "keywords": "Arduino",
+    "description": "UI components for Bodmer's TFT_eSPI",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/gordoste/TFTUI.git"
+    },
+    "frameworks": "arduino",
+    "platforms": [
+      "esp32",
+      "espressif32"
+    ],
+    "dependencies": [
+      {
+        "name": "TFT_eSPI"
+      }
+    ] 
+  }
+  
