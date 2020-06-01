@@ -6,6 +6,7 @@
 
 class PrintExtBox : public PrintExt, public Control {
 public:
+    using Control::init;
     void init();
     void paintBG();
     void show();

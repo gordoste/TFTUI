@@ -8,7 +8,8 @@ private:
     uint16_t m_borderColor = TFT_WHITE;
 
 public:
-    void init();
+    using Control::init;
+    void init() { m_borderProps = {TFT_WHITE, 1}; }
 
     void show();
     void update();

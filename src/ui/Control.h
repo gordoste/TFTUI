@@ -27,7 +27,7 @@ protected:
 
 public:
     Control &init(BasicLog *log, TFT_eSPI *tft, Window *win); // Use TouchScreen.addControl() instead of calling directly
-    virtual void init() = 0;                                  // Initialise any variables in child class
+    virtual void init() {};                                  // Initialise any variables in child class
     Window *getWindow() { return m_win; }
     bool isShown() { return m_shown; }
     virtual void show() = 0;          // Pure virtual function that needs to be implemented in child

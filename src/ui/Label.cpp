@@ -1,9 +1,5 @@
 #include "Label.h"
 
-void Label::init() {
-    m_borderProps = { TFT_WHITE, 1 };
-}
-
 void Label::show() {
     paintBG();
     m_shown = true;

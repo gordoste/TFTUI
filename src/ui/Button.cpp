@@ -1,9 +1,5 @@
 #include "Button.h"
 
-void Button::init() {
-    m_borderProps = { TFT_WHITE, 1 };
-}
-
 void Button::show() {
     paintBG();
     m_shown = true;

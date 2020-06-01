@@ -13,7 +13,8 @@ class List : public Control {
     static uint32_t MENU_BLACK_GETTER(uint8_t _cellNum) { return TFT_BLACK; }
 
 public:
-    void init(){};
+    using Control::init;
+
     void show();
     bool isShown() { return m_shown; }
 

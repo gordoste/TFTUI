@@ -10,6 +10,7 @@ protected:
     uint32_t m_lastTouchTime = 0;
 
 public:
+    virtual void init(){};
     void handleTouch(uint16_t x, uint16_t y, bool absolute);
 };
 
