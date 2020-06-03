@@ -17,6 +17,7 @@ void TFTUtils::drawBorderRect(TFT_eSPI *tft, Window win, uint32_t fillColor, Lin
 }
 
 void TFTUtils::touchCalibrate(TFT_eSPI *tft, const char *calFileName, bool forceCalibrate) {
+#ifdef TOUCH_CS
     uint16_t calData[5];
     uint8_t calDataOK = 0;
 
@@ -49,6 +50,9 @@ void TFTUtils::touchCalibrate(TFT_eSPI *tft, const char *calFileName, bool force
             f.close();
         }
     }
+#else
+#pragma message("Touch is disabled")
+#endif
 }
 
 bool TFTUtils::contains(Window &w, uint16_t x, uint16_t y) {

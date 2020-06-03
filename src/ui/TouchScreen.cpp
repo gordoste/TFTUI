@@ -16,6 +16,7 @@ void TouchScreen::addTouchControl(TouchControl *ctl, Window *win) {
 }
 
 TouchControl *TouchScreen::checkForTouch() {
+#ifdef TOUCH_CS
     if (m_tft->getTouch(&m_touchX, &m_touchY)) {
         for (m_touchCtlIter = m_listOfTouchControls.begin(); m_touchCtlIter != m_listOfTouchControls.end(); m_touchCtlIter++) {
             Window *ctlWin = (*m_touchCtlIter)->getWindow();
@@ -25,6 +26,9 @@ TouchControl *TouchScreen::checkForTouch() {
             }
         }
     }
+#else
+#pragma message("Touch is disabled")
+#endif
     return NULL;
 }
 
