@@ -27,7 +27,6 @@ private:
     uint16_t m_touchX, m_touchY;                        // Store touch co-ordinates
     std::vector<Control *>::iterator m_ctlIter;           // Iterator over controls
     std::vector<TouchControl *>::iterator m_touchCtlIter; // Iterator over controls
-    std::vector<Window> m_listOfWindows; // Storage for Window structs
 };
 
 #endif // #ifndef _TOUCHSCREEN_H
