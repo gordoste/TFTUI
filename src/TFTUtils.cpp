@@ -1,12 +1,12 @@
 #include "TFTUtils.h"
 
-void TFTUtils::fillWindow(TFT_eSPI *tft, Window win, uint32_t fillColor) {
+void TFTUtils::fillWindow(TFT_eSPI *tft, Window &win, uint32_t fillColor) {
     tft->fillRect(win.x, win.y, win.width, win.height, fillColor);
 }
 
 void TFTUtils::ignoreTouch(uint16_t x, uint16_t y, bool absolute) { return; }
 
-void TFTUtils::drawBorderRect(TFT_eSPI *tft, Window win, uint32_t fillColor, LineProperties borderProps, bool fill) {
+void TFTUtils::drawBorderRect(TFT_eSPI *tft, Window &win, uint32_t fillColor, LineProperties borderProps, bool fill) {
     for (int i = 0; i < borderProps.width; i++) {
         tft->drawRect(win.x + i, win.y + i, win.width - (2 * i), win.height - (2 * i), borderProps.color);
     }

@@ -19,6 +19,8 @@ struct Window {
     uint32_t y;
     int16_t width;
     int16_t height;
+    Window() : Window(0,0,0,0) {};
+    Window(uint32_t _x, uint32_t _y, int16_t _w, int16_t _h) { x=_x; y=_y; width=_w; height=_h; };
 };
 
 struct LineProperties {
@@ -37,8 +39,8 @@ public:
     static bool contains(Window &w, uint16_t x, uint16_t y);
     static bool contains(Window *w, uint16_t x, uint16_t y);
     static bool overlaps(Window &w1, Window &w2);
-    static void fillWindow(TFT_eSPI *tft, Window win, uint32_t fillColor);
-    static void drawBorderRect(TFT_eSPI *tft, Window win, uint32_t fillColor, LineProperties borderProps = DefaultBorder, bool fill = true);
+    static void fillWindow(TFT_eSPI *tft, Window &win, uint32_t fillColor);
+    static void drawBorderRect(TFT_eSPI *tft, Window &win, uint32_t fillColor, LineProperties borderProps = DefaultBorder, bool fill = true);
     // Read calibration data from file given, or calibrate and then save it there
     static void touchCalibrate(TFT_eSPI *tft, const char *calFileName, bool forceCalibrate = false);
 }; // class TFTUtils

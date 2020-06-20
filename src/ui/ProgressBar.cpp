@@ -5,7 +5,7 @@ void ProgressBar::setProgress(uint32_t progress, uint32_t total) {
         progress <<= 1;
         total <<= 1;
     }                                           // Scale up to make math easier
-    uint32_t step = total / (m_win->width - 2); // Figure out value of one pixel
+    uint32_t step = total / (m_win.width - 2); // Figure out value of one pixel
     m_progress = progress / step;
     update();
 }
@@ -21,12 +21,12 @@ void ProgressBar::show() {
 void ProgressBar::update() {
     if (!m_shown) return;
     if (m_progress == m_lastProgress) return;
-    m_progressX = m_win->x + 1 + m_progress;
-    uint32_t lastProgressX = m_win->x + 1 + m_lastProgress;
+    m_progressX = m_win.x + 1 + m_progress;
+    uint32_t lastProgressX = m_win.x + 1 + m_lastProgress;
     Window fillWin;
     uint16_t fillColor = m_fillColor;
-    fillWin.y = m_win->y + 1;
-    fillWin.height = m_win->height - 2;
+    fillWin.y = m_win.y + 1;
+    fillWin.height = m_win.height - 2;
     if (m_progressX > lastProgressX) {
         fillWin.x = lastProgressX;
         fillWin.width = m_progressX - lastProgressX;

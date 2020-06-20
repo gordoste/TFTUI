@@ -1,9 +1,17 @@
 #include "Control.h"
 
-Control &Control::init(BasicLog *log, TFT_eSPI *tft, Window *win) {
+Control &Control::init(BasicLog *log, TFT_eSPI *tft, Window &win) {
     m_log = log;
     m_tft = tft;
     m_win = win;
+    init(); // Call child class initialiser
+    return *this;
+}
+
+Control &Control::init(BasicLog *log, TFT_eSPI *tft, uint32_t _x, uint32_t _y, int16_t _w, int16_t _h) {
+    m_log = log;
+    m_tft = tft;
+    m_win = Window(_x,_y,_w,_h);
     init(); // Call child class initialiser
     return *this;
 }
@@ -59,39 +67,39 @@ void Control::paintText() {
     case TL_DATUM:
     case ML_DATUM:
     case BL_DATUM:
-        textPos.x = m_win->x + m_borderProps.width + m_textPadding;
+        textPos.x = m_win.x + m_borderProps.width + m_textPadding;
         break;
     case TC_DATUM:
     case MC_DATUM:
     case BC_DATUM:
-        textPos.x = m_win->x + (m_win->width / 2);
+        textPos.x = m_win.x + (m_win.width / 2);
         break;
     case TR_DATUM:
     case MR_DATUM:
     case BR_DATUM:
-        textPos.x = m_win->x + m_win->width - m_borderProps.width - m_textPadding;
+        textPos.x = m_win.x + m_win.width - m_borderProps.width - m_textPadding;
         break;
     default:
-        textPos.x = m_win->x;
+        textPos.x = m_win.x;
     }
     switch (m_textAlign) {
     case TL_DATUM:
     case TC_DATUM:
     case TR_DATUM:
-        textPos.y = m_win->y + m_borderProps.width + m_textPadding;
+        textPos.y = m_win.y + m_borderProps.width + m_textPadding;
         break;
     case ML_DATUM:
     case MC_DATUM:
     case MR_DATUM:
-        textPos.y = m_win->y + (m_win->height / 2);
+        textPos.y = m_win.y + (m_win.height / 2);
         break;
     case BL_DATUM:
     case BC_DATUM:
     case BR_DATUM:
-        textPos.y = m_win->y + m_win->height - m_borderProps.width - m_textPadding;
+        textPos.y = m_win.y + m_win.height - m_borderProps.width - m_textPadding;
         break;
     default:
-        textPos.y = m_win->y;
+        textPos.y = m_win.y;
     }
     m_tft->setTextDatum(m_textAlign);
     if (m_text != NULL && strlen(m_text) > 0) {
@@ -151,16 +159,16 @@ void Control::hide() {
 
 void Control::paintBorder() {
     if (!m_shown) return;
-    TFTUtils::drawBorderRect(m_tft, *m_win, TFT_BLACK, m_borderProps, false);
+    TFTUtils::drawBorderRect(m_tft, m_win, TFT_BLACK, m_borderProps, false);
 }
 
 void Control::paintFill() {
     if (!m_shown) return;
-    m_tft->fillRect(m_win->x + m_borderProps.width, m_win->y + m_borderProps.width, m_win->width - (2 * m_borderProps.width), m_win->height - (2 * m_borderProps.width), m_fillColor);
+    m_tft->fillRect(m_win.x + m_borderProps.width, m_win.y + m_borderProps.width, m_win.width - (2 * m_borderProps.width), m_win.height - (2 * m_borderProps.width), m_fillColor);
 }
 
 void Control::paintBG() {
-    TFTUtils::fillWindow(m_tft, *m_win, m_backgroundColor);
+    TFTUtils::fillWindow(m_tft, m_win, m_backgroundColor);
 }
 
 void Control::copyTextPropsFrom(Control &ctl) {

@@ -2,16 +2,12 @@
 
 void PrintExtBox::init() {
     m_textPadding = 1;
-    if (m_win == NULL) {
-        m_cursor = {0, 0};
-    } else {
-        m_cursor = {m_win->x, m_win->y};
-    }
+    m_cursor = {m_win.x, m_win.y};
 }
 
 void PrintExtBox::paintBG() {
     Control::paintBG();
-    m_tft->setCursor(m_win->x + m_borderProps.width + m_textPadding, m_win->y + m_borderProps.width + m_textPadding);
+    m_tft->setCursor(m_win.x + m_borderProps.width + m_textPadding, m_win.y + m_borderProps.width + m_textPadding);
     m_cursor = {m_tft->getCursorX(), m_tft->getCursorY()};
 }
 
@@ -30,7 +26,7 @@ size_t PrintExtBox::write(uint8_t ch) {
         if (m_tft->getCursorY() >= m_tft->height()) paintBG();
         m_cursor = {m_tft->getCursorX(), m_tft->getCursorY()};
     }
-    if (ch == '\r' || ch == '\n') m_cursor.x = m_win->x + m_borderProps.width + m_textPadding;
+    if (ch == '\r' || ch == '\n') m_cursor.x = m_win.x + m_borderProps.width + m_textPadding;
     return 1; // Processed 1 character
 }
 
