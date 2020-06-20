@@ -1,15 +1,13 @@
 #include "Control.h"
 
-Control &Control::init(BasicLog *log, TFT_eSPI *tft, Window &win) {
-    m_log = log;
+Control &Control::init(TFT_eSPI *tft, Window &win) {
     m_tft = tft;
     m_win = win;
     init(); // Call child class initialiser
     return *this;
 }
 
-Control &Control::init(BasicLog *log, TFT_eSPI *tft, uint32_t _x, uint32_t _y, int16_t _w, int16_t _h) {
-    m_log = log;
+Control &Control::init(TFT_eSPI *tft, uint32_t _x, uint32_t _y, int16_t _w, int16_t _h) {
     m_tft = tft;
     m_win = Window(_x,_y,_w,_h);
     init(); // Call child class initialiser

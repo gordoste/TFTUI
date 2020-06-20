@@ -9,7 +9,7 @@
 
 class TouchScreen {
 public:
-    void init(BasicLog *log, TFT_eSPI *tft);
+    void init(TFT_eSPI *tft);
     void addControl(Control *ctl, uint32_t _x, uint32_t _y, int16_t _w, int16_t _h);
     void addControl(Control *ctl, Window &win);
     void addTouchControl(TouchControl *ctl, uint32_t _x, uint32_t _y, int16_t _w, int16_t _h);
@@ -20,7 +20,6 @@ public:
     void updateAll();
 
 private:
-    BasicLog *m_log;
     TFT_eSPI *m_tft;
     std::vector<Control *> m_listOfControls;
     std::vector<TouchControl *> m_listOfTouchControls;

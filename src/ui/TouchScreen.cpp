@@ -1,17 +1,16 @@
 #include "TouchScreen.h"
 
-void TouchScreen::init(BasicLog *log, TFT_eSPI *tft) {
-    m_log = log;
+void TouchScreen::init(TFT_eSPI *tft) {
     m_tft = tft;
 }
 
 void TouchScreen::addControl(Control *ctl, uint32_t _x, uint32_t _y, int16_t _w, int16_t _h) {
-    ctl->init(m_log, m_tft, _x, _y, _w, _h);
+    ctl->init(m_tft, _x, _y, _w, _h);
     m_listOfControls.push_back(ctl);
 }
 
 void TouchScreen::addControl(Control *ctl, Window &win) {
-    ctl->init(m_log, m_tft, win);
+    ctl->init(m_tft, win);
     m_listOfControls.push_back(ctl);
 }
 

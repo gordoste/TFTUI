@@ -3,13 +3,10 @@
 
 #include "TFTUtils.h"
 
-#include "BasicLog.h"
-
 class Control {
 protected:
     TFT_eSPI *m_tft;
     Window m_win = Window(0,0,0,0);
-    BasicLog *m_log;
     bool m_shown = false;
     LineProperties m_borderProps = DefaultBorder;
     uint16_t m_backgroundColor = TFT_BLACK;
@@ -26,8 +23,8 @@ protected:
 #endif
 
 public:
-    Control &init(BasicLog *log, TFT_eSPI *tft, uint32_t _x, uint32_t _y, int16_t _w, int16_t _h); // Use TouchScreen.addControl() instead of calling directly
-    Control &init(BasicLog *log, TFT_eSPI *tft, Window &win); // Use TouchScreen.addControl() instead of calling directly
+    Control &init(TFT_eSPI *tft, uint32_t _x, uint32_t _y, int16_t _w, int16_t _h); // Use TouchScreen.addControl() instead of calling directly
+    Control &init(TFT_eSPI *tft, Window &win); // Use TouchScreen.addControl() instead of calling directly
     virtual void init() {};                                  // Initialise any variables in child class
     Window &getWindow() { return m_win; }
     bool isShown() { return m_shown; }
