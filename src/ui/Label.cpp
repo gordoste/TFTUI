@@ -11,6 +11,7 @@ void Label::show() {
 
 void Label::update() {
     if (!m_shown) return;
+    paintBorder();
     paintFill();
     paintText();
 }
