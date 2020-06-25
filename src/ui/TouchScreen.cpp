@@ -1,9 +1,5 @@
 #include "TouchScreen.h"
 
-void TouchScreen::init(TFT_eSPI *tft) {
-    m_tft = tft;
-}
-
 void TouchScreen::addControl(Control *ctl, uint32_t _x, uint32_t _y, int16_t _w, int16_t _h) {
     ctl->init(m_tft, _x, _y, _w, _h);
     m_listOfControls.push_back(ctl);
